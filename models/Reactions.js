@@ -3,9 +3,9 @@ const { format } = require('fecha')
 
 const reactionsSchema = new Schema(
     {
-        reactionId:{
+        reactionId: {
             type: Schema.Types.ObjectId,
-            default: new Schema.ObjectId
+            default: () => new Schema.Types.ObjectId(),
         },
         reactionBody: {
             type: String,
@@ -18,7 +18,7 @@ const reactionsSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: format(new Date(), 'dddd MMMM Do, YYYY')
+            default: () => format(new Date(), 'dddd MMMM Do, YYYY'),
         },
     }
 )

@@ -19,20 +19,20 @@ const userSchema = new Schema(
                 message: 'Invalid Email'
             }
         },
-        thoughts: {
+        thoughts: [{
             type: Schema.Types.ObjectId,
-            ref: 'thought'
-        },
-        friends: {
+            ref: 'thought',
+        }],
+        friends: [{
             type: Schema.Types.ObjectId,
-            ref: 'user'
-        }
+            ref: 'user',
+        }],
     }
 )
 
-userSchema.virtual('friendCount').get(() => {
-    return this.friends.length
-})
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length;
+});
 
 const User = model('user', userSchema)
 
