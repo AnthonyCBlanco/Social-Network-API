@@ -23,7 +23,7 @@ module.exports = {
           res.status(500).json(err);
         }
       },
-      async createUser(req, res) {
+      async createThought(req, res) {
         try {
           const thoughts = await Thought.create(req.body);
           res.json(thoughts);
