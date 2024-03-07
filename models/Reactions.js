@@ -1,12 +1,8 @@
-const { Schema, model, Types} = require('mongoose');
+const { Schema, model} = require('mongoose');
 const { format } = require('fecha')
 
 const reactionsSchema = new Schema(
     {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: null,
-        },
         reactionBody: {
             type: String,
             required: true,
