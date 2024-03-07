@@ -53,5 +53,39 @@ module.exports = {
         } catch (err) {
           res.status(500).json(err);
         }
+      },
+      async addReactions(req, res) {
+        try {
+          const thoughts = await Thought.findOneAndUpdate({ _id: req.params._id},
+             {$push: {reactions: {reactionBody: req.body.reactionBody, _id: req.body._id}}})
+          if (!thoughts) {
+            return res.status(404).json({ message: 'No Thougths with that ID' });
+          }
+          res.json(thoughts);
+        } catch(err) {
+          res.status(500).json(err)
+        }
+      },
+      async deleteReaction(req, res) {
+        // console.log(req.params)
+        try {
+          const thoughts = await Thought.findOneAndUpdate(
+            {
+             _id: req.params._id
+            },
+            {
+              $pull: {
+                reactions: {_id: req.body._id}
+              }},
+            {
+              new: true
+            })
+          if (!thoughts) {
+            return res.status(404).json({ message: 'No Reactions with that ID' });
+          }
+          res.json(thoughts);
+        } catch(err) {
+          res.status(500).json(err)
+        }
       }
 }
