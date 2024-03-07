@@ -10,7 +10,7 @@ const seedDatabase = async () => {
   try {
     console.log('Connected to MongoDB');
 
-    // Clear existing data (optional, use with caution in a development environment)
+    // Clear existing data
     await User.deleteMany({});
     await Thought.deleteMany({});
 
